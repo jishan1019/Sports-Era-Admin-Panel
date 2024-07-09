@@ -5,8 +5,8 @@ include "header.php";
 $userEmail = $_SESSION['userEmail'];
 
 if (empty($userEmail)) {
-  header('location: login.php');
-  exit();
+    header('location: login.php');
+    exit();
 }
 
 
@@ -18,7 +18,7 @@ if (empty($userEmail)) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Channel</title>
 
     <!-- Css -->
     <script src="https://cdn.tailwindcss.com"></script>
