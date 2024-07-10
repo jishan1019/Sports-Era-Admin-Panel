@@ -112,10 +112,10 @@ $res = $conn->query($sql);
                         echo "<tr>";
                         echo "<th>" . $index . "</th>";
                         echo "<td ><img src='" . $imageBaseUrl . "/upload/" . $row['left_img'] . "' alt='image' width='40' height='40' /></td>";
-                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td class='min-w-24'>" . $row['name'] . "</td>";
                         echo "<td ><img src='" . $imageBaseUrl . "/upload/" . $row['right_img'] . "' alt='image' width='40' height='40' /></td>";
-                        echo "<td>" . $row['type'] . "</td>";
-                        echo "<td class='mr-auto'><span class='text-center'>
+                        echo "<td class='min-w-24'>" . $row['type'] . "</td>";
+                        echo "<td class='mr-auto min-w-32'><span class='text-center'>
                         " . $row['time'] . '<br/>' . $row['date'] . "
                         </span></td>";
                         echo "<td class='font-semibold text-red-600'>" . ($row['isLive'] == 1 ? 'Live' : 'Upcoming') . "</td>";
