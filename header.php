@@ -18,13 +18,13 @@
                     class="menu menu-sm dropdown-content bg-white text-black rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2">
                     <li
                         class="bg-slate-100 py-1 hover:bg-blue-800 hover:text-white rounded transition-all duration-300">
-                        <a href="dashboard.php">Home</a>
+                        <a href="events.php">Home</a>
                     </li>
                     <li class="py-1 hover:bg-blue-800 hover:text-white rounded transition-all duration-300">
                         <a href="settings.php">Settings</a>
                     </li>
                     <li class="py-1 hover:bg-blue-800 hover:text-white rounded transition-all duration-300">
-                        <a href="dashboard.php">Live Events</a>
+                        <a href="events.php">Live Events</a>
                     </li>
                     <li class="py-1 hover:bg-blue-800 hover:text-white rounded transition-all duration-300">
                         <a href="category.php">Category</a>

@@ -167,6 +167,4 @@ closeModalBtn.addEventListener('click', () => {
 </script>
 
 
-
-
 </html>
