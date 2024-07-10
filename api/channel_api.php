@@ -1,1 +1,3 @@
-<!-- Categoryt recive on params -->
+<?php
+
+// Categoryt recive on params 
