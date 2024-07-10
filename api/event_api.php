@@ -41,5 +41,5 @@ if (mysqli_num_rows($result) > 0) {
     header('Content-type: application/json');
     echo json_encode($data);
 } else {
-    echo json_encode(["message" => "No events found"]);
+    echo json_encode(["message" => "No Data found"]);
 }
