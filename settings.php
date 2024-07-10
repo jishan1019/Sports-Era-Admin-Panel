@@ -30,7 +30,7 @@ $row = $res->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="light" lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -42,8 +42,8 @@ $row = $res->fetch_assoc();
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="bg-[#F1F4F8] min-h-screen text-black">
-  <main class="bg-white mx-auto w-full m-3 mt-8 md:w-[70%] shadow p-5 border-t-2 border-blue-800">
+<body class="bg-[#F1F4F8] min-h-screen text-black container mx-auto">
+  <main class="bg-white mx-auto w-full m-3 mt-8 xs:w-[70%] max-w-[70%] shadow p-5 border-t-2 border-blue-800">
     <form method="POST">
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Settings</h1>
