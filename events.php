@@ -116,10 +116,10 @@ $res = $conn->query($sql);
                         </span></td>";
                         echo "<td class='font-semibold text-red-600'>" . ($row['isLive'] == 1 ? 'Live' : 'Upcoming') . "</td>";
                         echo "<td>
-                        <a href='delete_category.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-green-400 rounded'>" . ($row['isLive'] == 1 ? 'Make Upcoming' : 'Make Live') . "</a>
+                        <a href='update_events.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-green-400 rounded'>" . ($row['isLive'] == 1 ? 'Make Upcoming' : 'Make Live') . "</a>
                         </td>";
                         echo "<td>
-                        <a href='delete_category.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-red-500 rounded'>Delete</a>
+                        <a href='delete_events.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-red-500 rounded'>Delete</a>
                         </td>";
                         echo "</tr>";
                         $index++;
