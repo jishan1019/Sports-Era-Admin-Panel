@@ -18,6 +18,8 @@ if (empty($userEmail)) {
 if (isset($_POST['submit'])) {
     $categoryName = mysqli_real_escape_string($conn, $_POST['categoryName']);
     $channelName = mysqli_real_escape_string($conn, $_POST['channelName']);
+    $matchLink1 = mysqli_real_escape_string($conn, $_POST['matchLink1']);
+    $matchLink2 = mysqli_real_escape_string($conn, $_POST['matchLink2']);
 
     $img = $_FILES['channelImg'];
     $iName = $img['name'];
@@ -31,7 +33,7 @@ if (isset($_POST['submit'])) {
         $location = 'upload/' . $actualName . '.' . $actualFormat;
         $imgName =  $actualName . '.' . $actualFormat;
 
-        $sql = "INSERT INTO channel(name,category, img, create_at) VALUES ( '$channelName','$categoryName', '$imgName', current_timestamp())";
+        $sql = "INSERT INTO channel(name,category,link1,link2,img, create_at) VALUES ( '$channelName','$categoryName', '$matchLink1' , '$matchLink2' , '$imgName', current_timestamp())";
 
         if ($conn->query($sql) === true) {
             move_uploaded_file($tempName, $location);
@@ -79,6 +81,8 @@ $result = $conn->query($sq);
                         <th class="text-white">Img</th>
                         <th class="text-white">Name</th>
                         <th class="text-white">Category</th>
+                        <th class="text-white">Match Link 1</th>
+                        <th class="text-white">Match Link 2</th>
                         <th class="text-white">Action</th>
                     </tr>
                 </thead>
@@ -91,6 +95,8 @@ $result = $conn->query($sq);
                         echo "<td ><img src='" . $imageBaseUrl . "/upload/" . $row['img'] . "' alt='image' width='40' height='40' /></td>";
                         echo "<td>" . $row['name'] . "</td>";
                         echo "<td>" . $row['category'] . "</td>";
+                        echo "<td>" . (strlen($row['link1']) > 100 ? substr($row['link1'], 0, 100) . '...' : $row['link1']) . "</td>";
+                        echo "<td>" . (strlen($row['link2']) > 100 ? substr($row['link2'], 0, 100) . '...' : $row['link2']) . "</td>";
                         echo "<td>
                         <a href='delete_channel.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-red-500 rounded'>Delete</a>
                         </td>";
@@ -104,8 +110,7 @@ $result = $conn->query($sq);
     </main>
 
     <footer class="relative">
-        <p class="md:h-16 md:w-16 h-10 w-10 bg-blue-800 text-white text-2xl cursor-pointer rounded-full flex items-center justify-center absolute right-8 bottom-0"
-            onclick="my_modal_5.showModal()">
+        <p class="md:h-16 md:w-16 h-10 w-10 bg-blue-800 text-white text-2xl cursor-pointer rounded-full flex items-center justify-center absolute right-8 bottom-0" onclick="my_modal_5.showModal()">
             <span>+</span>
         </p>
 
@@ -118,9 +123,18 @@ $result = $conn->query($sq);
                     <h3 class="text-lg font-bold">Add Channel</h3>
 
                     <div class="form-control mt-4">
-                        <input name="channelName" type="text" placeholder="Enter Channel name"
-                            class="input input-bordered bg-transparent border-1 border-black text-black" required />
+                        <input name="channelName" type="text" placeholder="Enter Channel name" class="input input-bordered bg-transparent border-1 border-black text-black" required />
                     </div>
+
+                    <div class="form-control mt-4">
+                        <input name="matchLink1" type="text" placeholder="Enter Match Link 1" class="input input-bordered bg-transparent border-1 border-black text-black" required />
+                    </div>
+
+                    <div class="form-control mt-4">
+                        <input name="matchLink2" type="text" placeholder="Enter Match Link 2" class="input input-bordered bg-transparent border-1 border-black text-black" required />
+                    </div>
+
+
 
                     <div>
                         <select name="categoryName" class="select select-secondary w-full mt-4" required>
@@ -143,8 +157,7 @@ $result = $conn->query($sq);
                         <label class="label">
                             <span class="label-text text-black">Choose Channel Img</span>
                         </label>
-                        <input name="channelImg" type="file"
-                            class="file-input file-input-bordered file-input-primary w-full" />
+                        <input name="channelImg" type="file" class="file-input file-input-bordered file-input-primary w-full" />
                     </div>
 
                     <button name="submit" type="submit" class="btn btn-md mt-5">Add</button>
@@ -157,13 +170,13 @@ $result = $conn->query($sq);
 
 
 <script>
-const closeModalBtn = document.getElementById('closeModal');
-document.getElementById('navTitle').innerText = "All Channel";
+    const closeModalBtn = document.getElementById('closeModal');
+    document.getElementById('navTitle').innerText = "All Channel";
 
-const modal = document.getElementById('my_modal_5');
-closeModalBtn.addEventListener('click', () => {
-    modal.close();
-});
+    const modal = document.getElementById('my_modal_5');
+    closeModalBtn.addEventListener('click', () => {
+        modal.close();
+    });
 </script>
 
 

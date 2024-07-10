@@ -21,6 +21,8 @@ if (isset($_POST['submit'])) {
     $matchTime = mysqli_real_escape_string($conn, $_POST['matchTime']);
     $matchDate = mysqli_real_escape_string($conn, $_POST['matchDate']);
     $matchIsLive = mysqli_real_escape_string($conn, $_POST['matchIsLive']);
+    $matchLink1 = mysqli_real_escape_string($conn, $_POST['matchLink1']);
+    $matchLink2 = mysqli_real_escape_string($conn, $_POST['matchLink2']);
 
     $matchStatus = $matchIsLive == "Live" ? 1 : 0;
 
@@ -51,7 +53,7 @@ if (isset($_POST['submit'])) {
         $imgName2 =  $actualName2 . '.' . $actualFormat2;
 
 
-        $sql = "INSERT INTO events(name, left_img, right_img, type, isLive, time,date, create_at) VALUES ('$matchName', '$imgName1', '$imgName2', '$matchType', '$matchStatus', '$matchTime','$matchDate' , current_timestamp())";
+        $sql = "INSERT INTO events(name, left_img, right_img, type, isLive, time,date, link1,link2, create_at) VALUES ('$matchName', '$imgName1', '$imgName2', '$matchType', '$matchStatus', '$matchTime','$matchDate', '$matchLink1' , '$matchLink2' , current_timestamp())";
 
         if ($conn->query($sql) === true) {
             move_uploaded_file($tempName1, $location1);
@@ -97,8 +99,10 @@ $res = $conn->query($sql);
                         <th class="text-white">Type</th>
                         <th class="text-white">Time</th>
                         <th class="text-white">Status</th>
-                        <th class="text-white">Update</th>
+                        <th class="text-white">Update To</th>
                         <th class="text-white">Action</th>
+                        <th class="text-white">Match Link 1</th>
+                        <th class="text-white">Match Link 2</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -116,11 +120,13 @@ $res = $conn->query($sql);
                         </span></td>";
                         echo "<td class='font-semibold text-red-600'>" . ($row['isLive'] == 1 ? 'Live' : 'Upcoming') . "</td>";
                         echo "<td>
-                        <a href='update_events.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-green-400 rounded'>" . ($row['isLive'] == 1 ? 'Make Upcoming' : 'Make Live') . "</a>
+                        <a href='update_events.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-green-400 rounded'>" . ($row['isLive'] == 1 ? 'Upcoming' : 'Live') . "</a>
                         </td>";
                         echo "<td>
                         <a href='delete_events.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-red-500 rounded'>Delete</a>
                         </td>";
+                        echo "<td>" . (strlen($row['link1']) > 100 ? substr($row['link1'], 0, 100) . '...' : $row['link1']) . "</td>";
+                        echo "<td>" . (strlen($row['link2']) > 100 ? substr($row['link2'], 0, 100) . '...' : $row['link2']) . "</td>";
                         echo "</tr>";
                         $index++;
                     }
@@ -169,7 +175,13 @@ $res = $conn->query($sql);
                         </select>
                     </div>
 
+                    <div class="form-control mt-4">
+                        <input name="matchLink1" type="text" placeholder="Enter Match Link 1" class="input input-bordered bg-transparent border-1 border-black text-black" required />
+                    </div>
 
+                    <div class="form-control mt-4">
+                        <input name="matchLink2" type="text" placeholder="Enter Match Link 2" class="input input-bordered bg-transparent border-1 border-black text-black" required />
+                    </div>
 
 
                     <div class="form-control mt-4">
