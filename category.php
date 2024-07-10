@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
         $sql = "INSERT INTO category(name, img, create_at) VALUES ('$categoryName', '$imgName', current_timestamp())";
         if ($conn->query($sql) === true) {
             move_uploaded_file($tempName, $location);
-            $m = "Product Inserted!";
+            $m = "Category Created!";
         }
     }
 }
@@ -133,6 +133,8 @@ $res = $conn->query($sql);
 
 <script>
 const closeModalBtn = document.getElementById('closeModal');
+document.getElementById('navTitle').innerText = "All Category";
+
 const modal = document.getElementById('my_modal_5');
 closeModalBtn.addEventListener('click', () => {
     modal.close();
