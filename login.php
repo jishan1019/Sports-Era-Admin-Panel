@@ -3,7 +3,6 @@
 session_start();
 $_SESSION['userEmail'] = '';
 
-
 include "auth/connect.php";
 
 $conn = connect();
@@ -63,15 +62,13 @@ if (isset($_POST["submit"])) {
                     <label class="label">
                         <span class="label-text">Email</span>
                     </label>
-                    <input name="email" id="uname" type="email" placeholder="Enter your email"
-                        class="input input-bordered bg-white border-2 border-black/20 text-black" required />
+                    <input name="email" id="uname" type="email" placeholder="Enter your email" class="input input-bordered bg-white border-2 border-black/20 text-black" required />
                 </div>
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text">Password</span>
                     </label>
-                    <input name="pass" type="password" placeholder="Enter your password"
-                        class="input input-bordered bg-white border-2 border-black/20 text-black" required />
+                    <input name="pass" type="password" placeholder="Enter your password" class="input input-bordered bg-white border-2 border-black/20 text-black" required />
                     <label class="label mt-3 underline">
                         <a href="signup.php" class="label-text-alt link link-hover">Create new account?</a>
                     </label>

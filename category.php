@@ -1,15 +1,20 @@
 <?php
 session_start();
 include "header.php";
+include "auth/connect.php";
 
 $userEmail = $_SESSION['userEmail'];
+
+$conn = connect();
+$imageBaseUrl = getImgUrl();
 
 if (empty($userEmail)) {
     header('location: login.php');
     exit();
 }
 
-
+$sql = "SELECT * FROM category";
+$res = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +31,37 @@ if (empty($userEmail)) {
 </head>
 
 <body class="bg-white min-h-screen text-black">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, fugiat
-    ipsum. Error modi distinctio in et explicabo, alias tempora aliquam
-    repudiandae ex, suscipit delectus pariatur! Adipisci harum blanditiis
-    aliquam similique.
+    <main class="w-full md:w-[70%] shadow mx-auto mt-8 p-3 h-[75vh] border border-gray-100 ">
+        <div class="overflow-x-auto">
+            <table class="table">
+                <!-- head -->
+                <thead class="bg-blue-800">
+                    <tr>
+                        <th>#</th>
+                        <th class="text-white">Img</th>
+                        <th class="text-white">Name</th>
+                        <th class="text-white">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $index = 1;
+                    while ($row = $res->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<th>" . $index . "</th>";
+                        echo "<td ><img src='" . $imageBaseUrl . "/upload/" . $row['img'] . "' alt='image' width='40' height='40' /></td>";
+                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td>
+                        <a href='delete_category.php?id=" . $row['id'] . "' class='text-white py-2 px-3 bg-red-500 rounded'>Delete</a>
+                        </td>";
+                        echo "</tr>";
+                        $index++;
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </body>
 
 </html>
