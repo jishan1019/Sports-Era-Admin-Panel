@@ -10,13 +10,14 @@ function connect()
     return $conn;
 }
 
-function closeConnection($cn)
-{
-    $cn->close();
-}
-
 function getImgUrl()
 {
     $url = "http://localhost/Practice/sports-era";
     return $url;
+}
+
+
+function closeConnection($cn)
+{
+    $cn->close();
 }
